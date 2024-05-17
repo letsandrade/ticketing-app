@@ -5,20 +5,20 @@ import StatusDisplay from "./StatusDisplay";
 
 const TicketCard = () => {
   return (
-    <div className="flex flex-col bg-card hover:bg-cardhover rounded-md shadow-lg p-3 m-2">
-      <div className="flex mb-3">
+    <div className="m-2 flex flex-col rounded-md bg-card p-3 shadow-lg hover:bg-cardhover">
+      <div className="mb-3 flex">
         <PriorityDisplay />
         <div className="ml-auto">
           <DeleteBlock />
         </div>
       </div>
       <h4>Ticket Title</h4>
-      <hr className="h-px border-0 bg-page mb-2" />
+      <hr className="mb-2 h-px border-0 bg-page" />
       <p className="whitespace-pre-wrap">
         this is the ticket description! Please do
       </p>
       <div className="flex-grow"></div>
-      <div className="flex mt-2">
+      <div className="mt-2 flex">
         <div className="flex flex-col">
           <p>16/05/2024 04:20</p>
           <ProgressBar />
