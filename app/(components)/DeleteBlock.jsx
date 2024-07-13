@@ -19,7 +19,7 @@ const DeleteBlock = ({ id }) => {
   return (
     <FontAwesomeIcon
       icon={faX}
-      className="text-red-400 hover:cursor-pointer hover:text-red-200"
+      className="rounded-full bg-white/20 p-1 px-1.5 text-nav hover:cursor-pointer hover:text-red-200"
       onClick={deleteTicket}
     />
   );

@@ -103,61 +103,84 @@ const TicketForm = ({ ticket }) => {
           <option value="Software Problem">Software Problem</option>
           <option value="Project">Project</option>
         </select>
-        <label htmlFor="priority">priority</label>
-        <div className="flex items-center justify-start">
-          <input
-            id="priority-1"
-            name="priority"
-            type="radio"
-            onChange={handleChange}
-            required={true}
-            value={1}
-            checked={formData.priority == 1}
-          />
-          <label htmlFor="priority-1" className="m-0">
-            1
-          </label>
+        <label htmlFor="priority">Prioridade</label>
+        <div className="items-center justify-evenly sm:flex">
+          <div className="flex items-center justify-start">
+            <input
+              id="priority-1"
+              name="priority"
+              type="radio"
+              className="accent-accent"
+              onChange={handleChange}
+              required={true}
+              value={1}
+              checked={formData.priority == 1}
+            />
+            <label htmlFor="priority-1" className="ml-1 mt-0">
+              1
+            </label>
+          </div>
+          <div className="flex items-center justify-start">
+            <input
+              id="priority-2"
+              name="priority"
+              type="radio"
+              className="accent-accent"
+              onChange={handleChange}
+              required={true}
+              value={2}
+              checked={formData.priority == 2}
+            />
+            <label htmlFor="priority-2" className="ml-1 mt-0">
+              2
+            </label>
+          </div>
+          <div className="flex items-center justify-start">
+            <input
+              id="priority-3"
+              name="priority"
+              type="radio"
+              className="accent-accent"
+              onChange={handleChange}
+              required={true}
+              value={3}
+              checked={formData.priority == 3}
+            />
+            <label htmlFor="priority-3" className="ml-1 mt-0">
+              3
+            </label>
+          </div>
+          <div className="flex items-center justify-start">
+            <input
+              id="priority-4"
+              name="priority"
+              type="radio"
+              className="accent-accent"
+              onChange={handleChange}
+              required={true}
+              value={4}
+              checked={formData.priority == 4}
+            />
+            <label htmlFor="priority-4" className="ml-1 mt-0">
+              4
+            </label>
+          </div>
+          <div className="flex items-center justify-start">
+            <input
+              id="priority-5"
+              name="priority"
+              type="radio"
+              className="accent-accent"
+              onChange={handleChange}
+              required={true}
+              value={5}
+              checked={formData.priority == 5}
+            />
+            <label htmlFor="priority-5" className="ml-1 mt-0">
+              5
+            </label>
+          </div>
         </div>
-        <input
-          id="priority-2"
-          name="priority"
-          type="radio"
-          onChange={handleChange}
-          required={true}
-          value={2}
-          checked={formData.priority == 2}
-        />
-        <label htmlFor="priority-2">2</label>
-        <input
-          id="priority-3"
-          name="priority"
-          type="radio"
-          onChange={handleChange}
-          required={true}
-          value={3}
-          checked={formData.priority == 3}
-        />
-        <label htmlFor="priority-3">3</label>
-        <input
-          id="priority-4"
-          name="priority"
-          type="radio"
-          onChange={handleChange}
-          required={true}
-          value={4}
-          checked={formData.priority == 4}
-        />
-        <label htmlFor="priority-4">4</label>
-        <input
-          id="priority-5"
-          name="priority"
-          type="radio"
-          onChange={handleChange}
-          required={true}
-          value={5}
-          checked={formData.priority == 5}
-        />
-        <label htmlFor="priority-5">5</label>
         <label htmlFor="">Progress</label>
         <input
           type="range"
@@ -167,6 +190,7 @@ const TicketForm = ({ ticket }) => {
           min="0"
           max="100"
           onChange={handleChange}
+          className="accent-accent"
         />
         <label htmlFor="">Status</label>
         <select

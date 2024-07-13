@@ -34,7 +34,7 @@ const TicketCard = ({ ticket }) => {
         <hr className="mb-2 h-px border-0 bg-page" />
         <p className="whitespace-pre-wrap">{ticket.description}</p>
         <div className="flex-grow"></div>
-        <div className="mt-2 flex">
+        <div className="mt-2 flex ">
           <div className="flex flex-col">
             <p>{formatTimeStamp(ticket.createdAt)}</p>
             <ProgressBar progress={ticket.progress} />
