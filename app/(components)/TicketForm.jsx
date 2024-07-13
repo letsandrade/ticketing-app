@@ -3,7 +3,8 @@
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
-const TicketForm = () => {
+const TicketForm = ({ ticket }) => {
+  const EDITMODE = ticket._id === "new" ? false : true;
   const router = useRouter();
 
   const handleChange = (event) => {
@@ -18,18 +19,31 @@ const TicketForm = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const res = await fetch("/api/Tickets", {
-      method: "POST",
-      body: JSON.stringify({ formData }),
-      "content-type": "application/json",
-    });
 
-    if (!res.ok) {
-      throw new Error("Failed to create ticket");
+    if (EDITMODE) {
+      const res = await fetch(`/api/Tickets/${ticket._id}`, {
+        method: "PUT",
+        body: JSON.stringify({ formData }),
+        "content-type": "application/json",
+      });
+
+      if (!res.ok) {
+        throw new Error("Failed to update ticket");
+      }
+    } else {
+      const res = await fetch("/api/Tickets", {
+        method: "POST",
+        body: JSON.stringify({ formData }),
+        "content-type": "application/json",
+      });
+
+      if (!res.ok) {
+        throw new Error("Failed to create ticket");
+      }
     }
 
-    router.refresh();
     router.push("/");
+    router.refresh();
   };
 
   const startingTicketData = {
@@ -41,6 +55,15 @@ const TicketForm = () => {
     category: "Hardware Problem",
   };
 
+  if (EDITMODE) {
+    startingTicketData["title"] = ticket.title;
+    startingTicketData["description"] = ticket.description;
+    startingTicketData["priority"] = ticket.priority;
+    startingTicketData["progress"] = ticket.progress;
+    startingTicketData["status"] = ticket.status;
+    startingTicketData["category"] = ticket.category;
+  }
+
   const [formData, setFormData] = useState(startingTicketData);
   return (
     <div className="flex justify-center">
@@ -49,8 +72,8 @@ const TicketForm = () => {
         method="POST"
         onSubmit={handleSubmit}
       >
-        <h3>create your ticket</h3>
-        <label>Title</label>
+        <h3>{EDITMODE ? "Update your ticket" : "Create your ticket"}</h3>
+        <label htmlFor="">Title</label>
         <input
           id="title"
           name="title"
@@ -59,7 +82,7 @@ const TicketForm = () => {
           required={true}
           value={formData.title}
         />
-        <label>Description</label>
+        <label htmlFor="">Description</label>
         <textarea
           id="description"
           name="description"
@@ -68,7 +91,7 @@ const TicketForm = () => {
           value={formData.description}
           rows={5}
         />
-        <label>category</label>
+        <label htmlFor="">category</label>
         <select
           id="category"
           name="category"
@@ -80,17 +103,21 @@ const TicketForm = () => {
           <option value="Software Problem">Software Problem</option>
           <option value="Project">Project</option>
         </select>
-        <label>priority</label>
-        <input
-          id="priority-1"
-          name="priority"
-          type="radio"
-          onChange={handleChange}
-          required={true}
-          value={1}
-          checked={formData.priority == 1}
-        />
-        <label>1</label>
+        <label htmlFor="priority">priority</label>
+        <div className="flex items-center justify-start">
+          <input
+            id="priority-1"
+            name="priority"
+            type="radio"
+            onChange={handleChange}
+            required={true}
+            value={1}
+            checked={formData.priority == 1}
+          />
+          <label htmlFor="priority-1" className="m-0">
+            1
+          </label>
+        </div>
         <input
           id="priority-2"
           name="priority"
@@ -100,7 +127,7 @@ const TicketForm = () => {
           value={2}
           checked={formData.priority == 2}
         />
-        <label>2</label>
+        <label htmlFor="priority-2">2</label>
         <input
           id="priority-3"
           name="priority"
@@ -110,7 +137,7 @@ const TicketForm = () => {
           value={3}
           checked={formData.priority == 3}
         />
-        <label>3</label>
+        <label htmlFor="priority-3">3</label>
         <input
           id="priority-4"
           name="priority"
@@ -120,7 +147,7 @@ const TicketForm = () => {
           value={4}
           checked={formData.priority == 4}
         />
-        <label>4</label>
+        <label htmlFor="priority-4">4</label>
         <input
           id="priority-5"
           name="priority"
@@ -130,8 +157,8 @@ const TicketForm = () => {
           value={5}
           checked={formData.priority == 5}
         />
-        <label>5</label>
-        <label>Progress</label>
+        <label htmlFor="priority-5">5</label>
+        <label htmlFor="">Progress</label>
         <input
           type="range"
           id="progress"
@@ -141,7 +168,7 @@ const TicketForm = () => {
           max="100"
           onChange={handleChange}
         />
-        <label>Status</label>
+        <label htmlFor="">Status</label>
         <select
           id="status"
           name="status"
@@ -152,7 +179,11 @@ const TicketForm = () => {
           <option value="started">Started</option>
           <option value="done">Done</option>
         </select>
-        <input type="submit" className="btn max-w-xs" value="Create Ticket" />
+        <input
+          type="submit"
+          className="btn max-w-xs"
+          value={EDITMODE ? "Update ticket" : "Create ticket"}
+        />
       </form>
     </div>
   );
