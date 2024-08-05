@@ -3,25 +3,37 @@ import TicketCard from "./(components)/TicketCard";
 const getTickets = async () => {
   try {
     const baseURL = process.env.NEXT_PUBLIC_API_BASE_URL;
+    console.log(`Fetching from: ${baseURL}/api/Tickets`);
     const res = await fetch(`${baseURL}/api/Tickets`, {
       cache: "no-store",
     });
 
-    return res.json();
+    console.log(`Response status: ${res.status}`);
+
+    if (!res.ok) {
+      throw new Error("Failed to fetch tickets");
+    }
+
+    const data = await res.json();
+    console.log("Fetched tickets:", data);
+
+    return data;
   } catch (error) {
-    console.log("failed to get tickets", error);
+    console.error("Failed to get tickets", error);
+    return { tickets: [] };
   }
 };
 
 const Dashboard = async () => {
-  const { tickets } = await getTickets();
+  const data = await getTickets();
+  const tickets = data.tickets || [];
 
   const uniqueCategories = [
-    ...new Set(tickets?.map(({ category }) => category)),
+    ...new Set(tickets.map(({ category }) => category)),
   ];
 
   return (
-    <div className="p-5 ">
+    <div className="p-5">
       <div>
         {tickets &&
           uniqueCategories.map((uniqueCategory, categoryIndex) => (
