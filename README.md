@@ -1,6 +1,6 @@
 # Ticketing App 🎟️🎫
 
-Hey there! Welcome to my Ticketing App project. This was a project i did following [ClarityCoders'](https://www.youtube.com/@ClarityCoders) course on [FreeCodeCamp's](https://www.youtube.com/@freecodecamp) youtube channel. This was actually my first contact with Nextjs, as so far i only had worked with dedicated backends and frontends. This was a nice class, felt easy to follow while teaching a lot of the basic concepts of the framework. It was necessary for me to make a few adjustments to the code in order to actually deploy it to vercel, where is currently hosted, other than that at the moment it is as the course left, and it was a quick, nice start to Nextjs, and i do intend to take it further in the near future. 💻
+Hey there! Welcome to my Ticketing App project. This was a project i did following [ClarityCoders'](https://www.youtube.com/@ClarityCoders) course on [FreeCodeCamp's](https://www.youtube.com/@freecodecamp) youtube channel. This was actually my first contact with Nextjs, as so far i had only worked with dedicated backends and frontends. This was a nice class, felt easy to follow while teaching a lot of the basic concepts of the framework. It was necessary for me to make a few adjustments to the code in order to actually deploy it to vercel, where is currently hosted, other than that at the moment it is as the course left, and it was a quick, nice start to Nextjs, and i do intend to take it further in the near future. 💻
 
 ## About the Project
 
