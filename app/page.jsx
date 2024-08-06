@@ -3,19 +3,19 @@ import TicketCard from "./(components)/TicketCard";
 const getTickets = async () => {
   try {
     const baseURL = process.env.NEXT_PUBLIC_API_BASE_URL;
-    console.log(`Fetching from: ${baseURL}/api/Tickets`);
+    // console.log(`Fetching from: ${baseURL}/api/Tickets`);
     const res = await fetch(`${baseURL}/api/Tickets`, {
       cache: "no-store",
     });
 
-    console.log(`Response status: ${res.status}`);
+    // console.log(`Response status: ${res.status}`);
 
     if (!res.ok) {
       throw new Error("Failed to fetch tickets");
     }
 
     const data = await res.json();
-    console.log("Fetched tickets:", data);
+    // console.log("Fetched tickets:", data);
 
     return data;
   } catch (error) {
